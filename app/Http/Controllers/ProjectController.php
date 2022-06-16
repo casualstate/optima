@@ -127,4 +127,11 @@ class ProjectController extends Controller
         return redirect('/project')->with('success', 'RAB Berhasil Diinput');
     }
 
+    public function getRab(Request $request)
+    {
+        $rab = Rab::where('id', $request->id_rab)->first();
+
+        return response()->json(['rab' => $rab], 200);
+    }
+
 }

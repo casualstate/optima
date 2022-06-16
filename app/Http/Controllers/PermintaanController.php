@@ -75,9 +75,11 @@ class PermintaanController extends Controller
                                         <i class="bx bx-edit"></i>&nbsp; Update
                                     </button>' : '').'
 
-                                        <button type="button" data-id="'.$value->id.'" class="btn btn-sm btn-outline-success mt-1 rab" data-bs-toggle="modal" data-bs-target=".rabModal">
-                                            <i class="bx bx-dollar-circle"></i>&nbsp; Rab
-                                        </button>
+                                        '.($rab == null ? '<button type="button" data-id="'.$value->id.'" class="btn btn-sm btn-outline-success mt-1 rab" data-bs-toggle="modal" data-bs-target=".rabModal">
+                                        <i class="bx bx-dollar-circle"></i>&nbsp; Rab
+                                        </button>' : '<button type="button" data-id="'.$rab->id.'" class="btn btn-sm btn-outline-success mt-1 btnRab" data-bs-toggle="modal" data-bs-target=".rabDetailModal">
+                                        <i class="bx bx-dollar-circle"></i>&nbsp; Rab
+                                        </button>   ').'
                                         <button type="button" data-id="'.$value->id.'" class="btn btn-sm btn-outline-danger mt-1 btnProgress" data-bs-toggle="modal" data-bs-target=".progressModal">
                                             <i class="bx bx-timer"></i>&nbsp; Progress
                                         </button>

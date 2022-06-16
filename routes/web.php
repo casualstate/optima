@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/update-progress', [MitraController::class, 'updateProgress'])->name('update_progress');
 
     Route::post('/simpan-rab', [ProjectController::class, 'simpanRab'])->name('simpan_rab');
+    Route::get('/get-rab', [ProjectController::class, 'getRab'])->name('get-rab');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // logout
 

@@ -76,7 +76,7 @@
                                         <button type="button" data-id="{{ $value->id }}" data-permintaan="{{ $value->permintaan_id }}" class="btn btn-sm btn-outline-info update" data-bs-toggle="modal" data-bs-target=".updateModal">
                                             <i class="bx bx-edit"></i>&nbsp; Update
                                         </button>
-                                        <button type="button" data-id="{{ $value->id }}" class="btn btn-sm btn-outline-success rab" data-bs-toggle="modal" data-bs-target=".rabModal">
+                                        <button type="button" data-id="{{ $rab->id }}" class="btn btn-sm btn-outline-success btnRab" data-bs-toggle="modal" data-bs-target=".rabModal">
                                             <i class="bx bx-dollar-circle"></i>&nbsp; RAB
                                         </button>
                                         <button type="button" data-id="{{ $value->id }}" class="btn btn-sm btn-outline-danger btnProgress" data-bs-toggle="modal" data-bs-target=".progressModal">
@@ -152,6 +152,42 @@
         </div>
     </div>
 
+    <div class="modal fade rabModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <form class="modal-content">
+                @csrf
+                <input type="hidden" name="id_rab" id="id_rab">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detail RAB</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                        <label for="html5-date-input" class="col-md-3 col-form-label">Biaya</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="biaya" id="biaya" disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-date-input" class="col-md-3 col-form-label">Status</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" name="status" id="status" disabled>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-date-input" class="col-md-3 col-form-label">Keterangan</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" rows="3" name="keterangan" id="keterangan" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -209,6 +245,33 @@
                     .then(function () {
                         // always executed
                     });
+
+            });
+
+            $(document).on('click', 'button.btnRab', function () {
+
+            var rab_id = $(this).attr('data-id');
+
+            $('#id_rab').val(rab_id);
+
+            axios.get('http://localhost:8001/get-rab', {
+                    params: {
+                        id_rab: rab_id
+                    }
+                })
+                .then(function (response) {
+                    console.log(response.data);
+                    document.getElementById('biaya').value = response.data.rab.biaya;
+                    document.getElementById('status').value = response.data.rab.status;
+                    document.getElementById('keterangan').value = response.data.rab.keterangan;
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .then(function () {
+                    // always executed
+                });
 
             });
 
