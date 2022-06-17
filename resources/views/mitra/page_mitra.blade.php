@@ -76,9 +76,11 @@
                                         <button type="button" data-id="{{ $value->id }}" data-permintaan="{{ $value->permintaan_id }}" class="btn btn-sm btn-outline-info update" data-bs-toggle="modal" data-bs-target=".updateModal">
                                             <i class="bx bx-edit"></i>&nbsp; Update
                                         </button>
-                                        <button type="button" data-id="{{ $rab->id }}" class="btn btn-sm btn-outline-success btnRab" data-bs-toggle="modal" data-bs-target=".rabModal">
-                                            <i class="bx bx-dollar-circle"></i>&nbsp; RAB
-                                        </button>
+                                        @if ($rab != null)
+                                            <button type="button" data-id="{{ $rab->id }}" class="btn btn-sm btn-outline-success btnRab" data-bs-toggle="modal" data-bs-target=".rabModal">
+                                                <i class="bx bx-dollar-circle"></i>&nbsp; RAB
+                                            </button>
+                                        @endif
                                         <button type="button" data-id="{{ $value->id }}" class="btn btn-sm btn-outline-danger btnProgress" data-bs-toggle="modal" data-bs-target=".progressModal">
                                             <i class="bx bx-timer"></i>&nbsp; Progress
                                         </button>
